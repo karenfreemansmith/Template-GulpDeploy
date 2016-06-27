@@ -21,3 +21,7 @@ testing gulp tasks and deploy to gh-pages
 **insert "clean" as dependency for build
 *npm install jshint --save --only=dev
 *npm install gulp-jshint --save --only=dev
+**add jshint task to gulpfile
+*npm install mocha --save --dev
+*npm install chai --save --dev
+**create folder for specs/tests and setup test.js file(s)
