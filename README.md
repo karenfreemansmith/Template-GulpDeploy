@@ -13,3 +13,11 @@ testing gulp tasks and deploy to gh-pages
 **setup concat gulptask, make it a dependency for browserify
 *npm install gulp-uglify --save --only=dev
 **setup mimimize gulptask, make it a dependency for concat
+*npm install gulp-util --save --only=dev
+**setup productionBuild variable
+**and "build" task that starts with min if production and browserify if not
+*npm install del --save --only=dev
+**add "clean" task to delete files before build
+**insert "clean" as dependency for build
+*npm install jshint --save --only=dev
+*npm install gulp-jshint --save --only=dev
