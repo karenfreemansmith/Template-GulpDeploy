@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/karenfreemansmith/gulp-deploy#readme",
   "dependencies": {
+    "bower-files": "^3.13.3",
     "browserify": "^13.0.1",
     "chai": "^3.5.0",
     "del": "^2.2.1",
