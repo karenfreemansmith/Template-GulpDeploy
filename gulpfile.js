@@ -6,6 +6,7 @@ var source = require('vinyl-source-stream');
 var util = require('gulp-util');
 var del = require('del');
 var jshint = require('gulp-jshint');
+var pages = require('gulp-gh-pages');
 var lib = require('bower-files')({
   "overrides":{
     "bootstrap" : {
@@ -19,6 +20,11 @@ var lib = require('bower-files')({
 });
 
 var productionBuild = util.env.production;
+
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(pages());
+});
 
 gulp.task('bower', ['bowerJS', 'bowerCSS']);
 

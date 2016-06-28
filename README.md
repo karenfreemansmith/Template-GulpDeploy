@@ -40,3 +40,7 @@ testing gulp tasks and deploy to gh-pages
   * gulp tasks for "js" and "css" to combine files from vendors into one
   * add link/script for new vendor files
   * add bower task to build task
+
+* npm install gulp-gh-pages --save --only=dev
+  * create gulp task to deploy dist folder to gh-pages
+  * (missing index.html and other assets from dist folder...)
