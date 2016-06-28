@@ -1,0 +1,10 @@
+h1 {
+  text-align: center;
+  font-family: cursive;
+  font-size: 4em;
+  color: pink;
+  background-color: purple;
+  border: solid lime 30px;
+  border-radius: 50%;
+  padding: 10%;
+}

@@ -1,1 +1,26 @@
-!function e(r,n,t){function o(i,f){if(!n[i]){if(!r[i]){var l="function"==typeof require&&require;if(!f&&l)return l(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var c=n[i]={exports:{}};r[i][0].call(c.exports,function(e){var n=r[i][1][e];return o(n?n:e)},c,c.exports,e,r,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}({1:[function(e,r,n){n.hello=function(){return"Hello World!"}},{}],2:[function(e,r,n){$(document).ready(function(){$("#signup").submit(function(e){e.preventDefault();var r=$("#email").val();$("#signup").hide(),$("#solution").prepend("<p>Thank you, "+r+" has been added to our list!</p>")})});var t=e("./../src/js/hello.js").hello;$("h1").text(t),$(document).ready(function(){$("#time").text(moment())})},{"./../src/js/hello.js":1}]},{},[2]);
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+exports.hello = function() {
+  return "Welcome to Hell, Bitches!";
+};
+
+},{}],2:[function(require,module,exports){
+$(document).ready(function(){
+  $('#signup').submit(function(event){
+    event.preventDefault();
+    var email = $('#email').val();
+    $('#signup').hide();
+    $('#solution').prepend('<p>Thank you, ' + email + ' has been added to our list!</p>');
+  });
+});
+
+var hello = require('./../src/js/hello.js').hello;
+
+$(document).ready(function(){
+  $("h1").text(hello);
+});
+
+$(document).ready(function(){
+  $('#time').text(moment());
+});
+
+},{"./../src/js/hello.js":1}]},{},[2]);
