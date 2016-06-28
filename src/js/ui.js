@@ -1,3 +1,5 @@
 var hello = require('./../src/js/hello.js').hello;
 
-$("h1").text(hello);
+$(document).ready(function(){
+  $("h1").text(hello);
+});

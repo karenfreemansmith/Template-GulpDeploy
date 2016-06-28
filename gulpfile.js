@@ -7,6 +7,7 @@ var util = require('gulp-util');
 var del = require('del');
 var jshint = require('gulp-jshint');
 var pages = require('gulp-gh-pages');
+var sync = require('browser-sync').create();
 var lib = require('bower-files')({
   "overrides":{
     "bootstrap" : {
@@ -24,6 +25,45 @@ var productionBuild = util.env.production;
 gulp.task('deploy', function() {
   return gulp.src('./dist/**/*')
     .pipe(pages());
+});
+
+gulp.task('serve', function() {
+  sync.init({
+    server: {
+      baseDir: "./dist/",
+      index: "index.html"
+    }
+  });
+  gulp.watch(['src/js/*.js'],['jsBuild']);
+  gulp.watch(['bower.json'],['bowerBuild']);
+  gulp.watch(['src/*.html'],['htmlBuild']);
+  gulp.watch(['src/css/*.css'],['cssBuild']);
+});
+
+gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function() {
+  sync.reload();
+});
+
+gulp.task('bowerBuid', ['bower'], function() {
+  sync.reload();
+});
+
+gulp.task('htmlBuild', ['staticHTML'], function() {
+  sync.reload();
+});
+
+gulp.task('cssBuild', ['staticCSS'], function() {
+  sync.reload();
+});
+
+gulp.task('staticHTML', function() {
+  return gulp.src('index.html')
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('staticCSS', function() {
+  return gulp.src('./src/css/main.css')
+    .pipe(gulp.dest('./dist/css'));
 });
 
 gulp.task('bower', ['bowerJS', 'bowerCSS']);
