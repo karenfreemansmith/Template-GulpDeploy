@@ -8,6 +8,8 @@ var del = require('del');
 var jshint = require('gulp-jshint');
 var pages = require('gulp-gh-pages');
 var sync = require('browser-sync').create();
+var sass = require('gulp-sass');
+var maps = require('gulp-sourcemaps');
 var lib = require('bower-files')({
   "overrides":{
     "bootstrap" : {
@@ -38,6 +40,7 @@ gulp.task('serve', function() {
   gulp.watch(['bower.json'],['bowerBuild']);
   gulp.watch(['src/*.html'],['htmlBuild']);
   gulp.watch(['src/css/*.css'],['cssBuild']);
+  gulp.watch(['src/scss/*.scss'],['scssBuild']);
 });
 
 gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function() {
@@ -56,13 +59,25 @@ gulp.task('cssBuild', ['staticCSS'], function() {
   sync.reload();
 });
 
+gulp.task('scssBuild', ['sassCSS'], function() {
+  sync.reload();
+});
+
 gulp.task('staticHTML', function() {
-  return gulp.src('index.html')
+  return gulp.src('./src/*.html')
     .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('staticCSS', function() {
-  return gulp.src('./src/css/main.css')
+  return gulp.src('./src/css/*.css')
+    .pipe(gulp.dest('./dist/css'));
+});
+
+gulp.task('sassCSS', function() {
+  return gulp.src('./src/scss/*.scss')
+    .pipe(maps.init())
+    .pipe(sass())
+    .pipe(maps.write())
     .pipe(gulp.dest('./dist/css'));
 });
 
@@ -98,6 +113,9 @@ gulp.task('build', ['clean'], function() {
     gulp.start('jsBrowserify');
   }
   gulp.start('bower');
+  gulp.start('staticHTML');
+  gulp.start('staticCSS');
+  gulp.start('sassCSS');
 });
 
 gulp.task('jsConcat', function() {

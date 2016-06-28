@@ -42,7 +42,13 @@ testing gulp tasks and deploy to gh-pages
   * add bower task to build task
 * npm install browser-sync --save --only=dev
 
+## Installing SASS -
+* Requires Ruby to be installed first
+  * gem install SASS
 
+## Back in NPM...
+* npm install gulp-sass gulp-sourcemaps --save --only=dev
+  * add cssBuild task
 * npm install gulp-gh-pages --save --only=dev
   * create gulp task to deploy dist folder to gh-pages
   * (missing index.html and other assets from dist folder...)
